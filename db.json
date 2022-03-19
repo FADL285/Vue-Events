@@ -65,6 +65,17 @@
       "time": "11:00",
       "petsAllowed": false,
       "organizer": "Brody Kill"
+    },
+    {
+      "id": 1004,
+      "category": "food",
+      "title": "Friends Day",
+      "description": "Eat with my friend in a restaurant.",
+      "location": "Highway 50",
+      "date": "July 22, 2022",
+      "time": "11:00",
+      "petsAllowed": false,
+      "organizer": "Brody Kill"
     }
   ]
 }
