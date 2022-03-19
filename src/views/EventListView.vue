@@ -9,7 +9,15 @@
         rel="prev"
         v-if="page > 1"
       >
-        &#60; Previous
+        &laquo;
+      </router-link>
+      <router-link
+        v-for="page in totalPages"
+        :key="page"
+        :to="{ name: 'eventList', query: { page: page } }"
+        :class="{ active: currentPage(page) }"
+      >
+        {{ page }}
       </router-link>
       <router-link
         id="page-next"
@@ -17,7 +25,7 @@
         rel="next"
         v-if="hasNextPage"
       >
-        Next &#62;
+        &raquo;
       </router-link>
     </div>
   </div>
@@ -45,9 +53,16 @@ export default {
     EventCard,
   },
   computed: {
+    totalPages() {
+      return Math.ceil(this.totalEvents / perPage);
+    },
     hasNextPage() {
-      const totalPages = Math.ceil(this.totalEvents / 2);
-      return this.page < totalPages;
+      return this.page < this.totalPages;
+    },
+  },
+  methods: {
+    currentPage(page) {
+      return this.page === page;
     },
   },
   created() {
@@ -72,18 +87,25 @@ export default {
   align-items: center;
 }
 .pagination {
-  display: flex;
-  width: 290px;
+  display: inline-block;
 }
+
 .pagination a {
-  flex: 1;
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  margin: 0 2px;
   text-decoration: none;
-  color: #2c3e50;
 }
-#page-prev {
-  text-align: left;
+
+.pagination a.active {
+  background-color: #4caf50;
+  color: white;
+  border-radius: 5px;
 }
-#page-next {
-  text-align: right;
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
 }
 </style>
