@@ -14,7 +14,7 @@ const routes = [
     props: (route) => ({ page: parseInt(route.query.page) || 1 }),
   },
   {
-    path: "/event/:id",
+    path: "/events/:id",
     name: "EventLayout",
     component: EventLayout,
     props: true,
@@ -45,6 +45,10 @@ const routes = [
     // component: () =>
     //   import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
     component: AboutView,
+  },
+  {
+    path: "/about-us",
+    redirect: { name: "About" },
   },
 ];
 
