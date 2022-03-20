@@ -5,6 +5,7 @@ import EventLayout from "@/views/event/LayoutView";
 import EventDetails from "@/views/event/DetailsView";
 import EventRegister from "@/views/event/RegisterView";
 import EventEdit from "@/views/event/EditView";
+import NotFound from "@/views/NotFound";
 
 const routes = [
   {
@@ -49,6 +50,17 @@ const routes = [
   {
     path: "/about-us",
     redirect: { name: "About" },
+  },
+  {
+    path: "/:notFound(.*)",
+    name: "NotFound",
+    component: NotFound,
+  },
+  {
+    path: "/404/:resource",
+    name: "404Resource",
+    component: NotFound,
+    props: true,
   },
 ];
 
