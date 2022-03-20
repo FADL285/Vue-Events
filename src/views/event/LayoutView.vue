@@ -1,8 +1,14 @@
 <template>
   <div v-if="event">
     <h1>{{ event.title }}</h1>
-    <p>{{ event.time }} on {{ event.date }} @ {{ event.location }}</p>
-    <p>{{ event.description }}</p>
+    <div id="nav">
+      <router-link :to="{ name: 'EventDetails' }">Details</router-link>
+      |
+      <router-link :to="{ name: 'EventRegister' }">Register</router-link>
+      |
+      <router-link :to="{ name: 'EventEdit' }">Edit</router-link>
+    </div>
+    <router-view :event="event"></router-view>
   </div>
 </template>
 
@@ -10,18 +16,13 @@
 import EventService from "@/services/EventService";
 
 export default {
-  name: "EventDetails",
+  name: "EventLayout",
   data() {
     return {
       event: null,
     };
   },
-  props: {
-    id: {
-      type: [Number, String],
-      required: true,
-    },
-  },
+  props: ["id"],
   async created() {
     try {
       const response = await EventService.getEvent(this.id);
