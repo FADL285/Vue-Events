@@ -17,7 +17,7 @@ export default {
 
 <style scoped>
 .sk-chase {
-  margin-top: 3rem;
+  margin: 3rem auto 0 auto;
   width: 40px;
   height: 40px;
   position: relative;

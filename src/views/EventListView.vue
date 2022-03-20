@@ -5,7 +5,7 @@
       <EventCard v-for="event in events" :key="event.id" :event="event" />
       <ThePagination :page="page" :total-pages="totalPages"></ThePagination>
     </template>
-    <TheSpinner v-else></TheSpinner>
+    <TheSpinner v-else />
   </div>
 </template>
 
@@ -47,7 +47,7 @@ export default {
         this.events = response.data;
         this.totalEvents = response.headers["x-total-count"];
       } catch (error) {
-        console.log(error);
+        await this.$router.push({ name: "NetworkError" });
       }
     });
   },
