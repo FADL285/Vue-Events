@@ -17,7 +17,7 @@ import ThePagination from "@/components/ThePagination";
 import TheSpinner from "@/components/TheSpinner";
 
 // Posts per page
-const perPage = 2;
+const perPage = 4;
 
 export default {
   name: "EventListView",

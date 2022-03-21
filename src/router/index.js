@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import EventListView from "../views/EventListView.vue";
-import AboutView from "@/views/AboutView";
+// import AboutView from "@/views/AboutView";
 import EventLayout from "@/views/event/LayoutView";
 import EventDetails from "@/views/event/DetailsView";
 import EventRegister from "@/views/event/RegisterView";
@@ -55,6 +55,9 @@ const routes = [
         path: "edit",
         name: "EventEdit",
         component: EventEdit,
+        meta: {
+          requiredAuth: true,
+        },
       },
     ],
   },
@@ -64,9 +67,9 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    // component: () =>
-    //   import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
-    component: AboutView,
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    // component: AboutView,
   },
   {
     path: "/about-us",
@@ -93,11 +96,33 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0 };
+    }
+  },
 });
 
-router.beforeEach(() => {
+router.beforeEach((to, from) => {
   NProgress.start();
   NProgress.inc(0.35);
+
+  const notAuthorized = true;
+  if (to.meta.requiredAuth && notAuthorized) {
+    GStore.flashMessage = "Sorry, you are not authorized to view this page";
+
+    setTimeout(() => {
+      GStore.flashMessage = "";
+    }, 3000);
+
+    if (from.href) {
+      return false;
+    } else {
+      return { path: "/" };
+    }
+  }
 });
 
 router.afterEach(() => {
