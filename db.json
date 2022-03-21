@@ -9,7 +9,7 @@
       "date": "January 28, 2022",
       "time": "12:00",
       "petsAllowed": true,
-      "organizer": "Kat Laydee"
+      "organizer": "John Doe"
     },
     {
       "id": 456,
@@ -20,7 +20,7 @@
       "date": "March 14, 2022",
       "time": "10:00",
       "petsAllowed": true,
-      "organizer": "Fern Pollin"
+      "organizer": "Mohamed Fadl"
     },
     {
       "id": 789,
@@ -31,7 +31,7 @@
       "date": "July 22, 2022",
       "time": "11:00",
       "petsAllowed": false,
-      "organizer": "Carey Wales"
+      "organizer": "John Doe"
     },
     {
       "id": 1001,
@@ -42,7 +42,7 @@
       "date": "August 28, 2022",
       "time": "12:00",
       "petsAllowed": true,
-      "organizer": "Dawg Dahd"
+      "organizer": "John Doe"
     },
     {
       "id": 1002,
@@ -53,7 +53,7 @@
       "date": "September 14, 2022",
       "time": "3:00",
       "petsAllowed": true,
-      "organizer": "Kahn Opiner"
+      "organizer": "Mohamed Fadl"
     },
     {
       "id": 1003,
@@ -64,7 +64,7 @@
       "date": "July 22, 2022",
       "time": "11:00",
       "petsAllowed": false,
-      "organizer": "Brody Kill"
+      "organizer": "Mohamed Fadl"
     },
     {
       "id": 1004,
@@ -75,7 +75,29 @@
       "date": "July 22, 2022",
       "time": "11:00",
       "petsAllowed": false,
-      "organizer": "Brody Kill"
+      "organizer": "John Doe"
+    },
+    {
+      "id": 1005,
+      "category": "food",
+      "title": "Graduation Project Day",
+      "description": "Eat with my team in a restaurant.",
+      "location": "Highway 50",
+      "date": "July 22, 2022",
+      "time": "11:00",
+      "petsAllowed": false,
+      "organizer": "Mohamed Fadl"
+    },
+    {
+      "id": 1006,
+      "category": "travel",
+      "title": "Travel for a trip",
+      "description": "travel with my friend to Alex.",
+      "location": "Highway 50",
+      "date": "July 22, 2022",
+      "time": "11:00",
+      "petsAllowed": false,
+      "organizer": "Mohamed Fadl"
     }
   ]
 }
