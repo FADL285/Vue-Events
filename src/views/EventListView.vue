@@ -13,7 +13,6 @@
 // @ is an alias to /src
 import EventCard from "@/components/EventCard.vue";
 import EventService from "@/services/EventService";
-import { watchEffect } from "vue";
 import ThePagination from "@/components/ThePagination";
 import TheSpinner from "@/components/TheSpinner";
 
@@ -39,17 +38,31 @@ export default {
       return Math.ceil(this.totalEvents / perPage);
     },
   },
-  created() {
-    watchEffect(async () => {
-      this.events = null;
-      try {
-        const response = await EventService.getEvents(perPage, this.page);
-        this.events = response.data;
-        this.totalEvents = response.headers["x-total-count"];
-      } catch (error) {
-        await this.$router.push({ name: "NetworkError" });
-      }
-    });
+  async beforeRouteEnter(routeTo, routeFrom, next) {
+    try {
+      const response = await EventService.getEvents(
+        perPage,
+        parseInt(routeTo.query.page) || 1
+      );
+      next((vm) => {
+        vm.events = response.data;
+        vm.totalEvents = response.headers["x-total-count"];
+      });
+    } catch (error) {
+      next({ name: "NetworkError" });
+    }
+  },
+  async beforeRouteUpdate(routeTo) {
+    try {
+      const response = await EventService.getEvents(
+        perPage,
+        parseInt(routeTo.query.page) || 1
+      );
+      this.events = response.data;
+      this.totalEvents = response.headers["x-total-count"];
+    } catch (error) {
+      return { name: "NetworkError" };
+    }
   },
 };
 </script>
